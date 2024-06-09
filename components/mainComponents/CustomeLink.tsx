@@ -1,126 +1,218 @@
-import React from 'react'
+"use client";
+import React, { useState } from "react";
+import { z } from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useFieldArray, useForm } from "react-hook-form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "../ui/form";
+import { Input } from "../ui/input";
+import { Textarea } from "../ui/textarea";
+
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "@/lib/store/store";
+import BalaData from "@/lib/USerDataSchema";
+import {
+  removeLink,
+  updateLinks,
+} from "@/lib/features/UserSlice/userDataSlice";
+import { Button } from "../ui/button";
+import { Plus, X } from "lucide-react";
+
+import { useEffect } from "react";
+
+const formSchema = z.object({
+  label: z.string(),
+  url: z.string().url(),
+  icon: z.string(),
+});
 
 const CustomeLink = () => {
-  return (
-    <section aria-labelledby="social-links-header">
-    <h2 className="text-xl font-semibold" id="social-links-header">
-      Social Links
-    </h2>
-    <p className="text-sm text-gray-600">Add some social media links</p>
-    <div className="bg-white p-4 rounded-lg shadow space-y-4">
-      <div className="grid grid-cols-2 gap-4">
-        <div className="flex flex-col">
-          <label className="text-sm font-medium" htmlFor="facebook">
-            Facebook
-          </label>
-          <input
-            className="mt-1 p-2 border rounded-md"
-            id="facebook"
-            readOnly
-            type="text"
-            value="https://www.facebook.com/john_snow"
-          />
-        </div>
-        <div className="flex flex-col">
-          <label className="text-sm font-medium" htmlFor="twitter">
-            Twitter
-          </label>
-          <input
-            className="mt-1 p-2 border rounded-md"
-            id="twitter"
-            readOnly
-            type="text"
-            value="https://twitter.com/john_snow"
-          />
-        </div>
-        <div className="flex flex-col">
-          <label className="text-sm font-medium" htmlFor="instagram">
-            Instagram
-          </label>
-          <input
-            className="mt-1 p-2 border rounded-md"
-            id="instagram"
-            readOnly
-            type="text"
-            value="https://www.instagram.com/john_snow"
-          />
-        </div>
-        <div className="flex flex-col">
-          <label className="text-sm font-medium" htmlFor="github">
-            Github
-          </label>
-          <input
-            className="mt-1 p-2 border rounded-md"
-            id="github"
-            readOnly
-            type="text"
-            value="https://github.com/john_snow"
-          />
-        </div>
-        <div className="flex flex-col">
-          <label className="text-sm font-medium" htmlFor="telegram">
-            Telegram
-          </label>
-          <input
-            className="mt-1 p-2 border rounded-md"
-            id="telegram"
-            readOnly
-            type="text"
-            value="https://t.me/john_snow"
-          />
-        </div>
-        <div className="flex flex-col">
-          <label className="text-sm font-medium" htmlFor="linkedin">
-            Linkedin
-          </label>
-          <input
-            className="mt-1 p-2 border rounded-md"
-            id="linkedin"
-            readOnly
-            type="text"
-            value="https://linkedin.com/john_snow"
-          />
-        </div>
-        <div className="flex flex-col">
-          <label className="text-sm font-medium" htmlFor="email">
-            Email
-          </label>
-          <input
-            className="mt-1 p-2 border rounded-md"
-            id="email"
-            readOnly
-            type="text"
-            value="mailto@john_snow.cc"
-          />
-        </div>
-        <div className="flex flex-col">
-          <label className="text-sm font-medium" htmlFor="youtube">
-            Youtube
-          </label>
-          <input
-            className="mt-1 p-2 border rounded-md"
-            id="youtube"
-            readOnly
-            type="text"
-            value="https://youtube.com/@john_snow"
-          />
-        </div>
-        <div className="flex flex-col">
-          <label className="text-sm font-medium" htmlFor="whatsapp">
-            Whatsapp
-          </label>
-          <input
-            className="mt-1 p-2 border rounded-md"
-            id="whatsapp"
-            readOnly
-            type="text"
-            value="+918888888888"
-          />
-        </div>
-      </div>
-    </div>
-  </section>
-  )
-}
+  const [formData, setFormData] = useState<BalaData>({
+    profile: {
+      username: "",
+      description: "",
+      profileImage: "",
+    },
+    socialLinks: {
+      facebook: "",
+      twitter: "",
+      instagram: "",
+      github: "",
+      telegram: "",
+      linkedin: "",
+      email: "",
+      youtube: "",
+      whatsapp: "",
+    },
+    links: [
+      {
+        icon: "",
+        label: "",
+        url: "",
+      },
+    ],
+  });
 
-export default CustomeLink
+  const dispatch = useDispatch();
+  const customeLinkData = useSelector(
+    (state: RootState) => state.heyRudra.userData.links
+  );
+
+  const form = useForm<BalaData>({
+    resolver: zodResolver(formSchema),
+    defaultValues: { links: customeLinkData },
+  });
+
+  const { fields, append, remove } = useFieldArray({
+    control: form.control,
+    name: "links",
+  });
+
+  const updateFormDataAndSend = (index: number, key: string, value: string) => {
+    const updatedLinks = [...formData.links]; // Create a copy of the links array
+    updatedLinks[index] = { ...updatedLinks[index], [key]: value }; // Update the specific field
+    setFormData((prev) => ({
+      ...prev,
+      links: updatedLinks, // Update the links array in formData
+    }));
+    dispatch(updateLinks(updatedLinks)); // Dispatch updatedLinks instead of formData.links
+  };
+
+  // console.log("BalaRudra", customeLinkData);
+
+
+
+
+
+
+  return (
+    <section aria-labelledby="profile-header" className="px-4 max-w-4xl">
+      {/* this is the form section */}
+      <div className="pt-4 space-y-4">
+        <Form {...form}>
+          <form className="space-y-4">
+            {fields.map((field, index) => (
+              <React.Fragment key={field.id}>
+                <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+                  {"Link " +
+                    (index + 1) +
+                    " : " +
+                    (field.label ? field.label : "Add Link")}
+                </h3>
+                <FormField
+                  control={form.control}
+                  name={`links.${index}.label`}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Label</FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="Label"
+                          {...field}
+                          value={field.value as string}
+                          onChange={(e) => {
+                            field.onChange(e);
+                            updateFormDataAndSend(
+                              index,
+                              "label",
+                              e.target.value
+                            ); // Pass index as well
+                          }}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name={`links.${index}.url`}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>
+                        URL{" "}
+                        <span className="text-xs text-muted-foreground">
+                          (e.g. https://example.com)
+                        </span>
+                      </FormLabel>
+                      <FormControl>
+                        <Textarea
+                          placeholder="URL"
+                          {...field}
+                          value={field.value as string}
+                          onChange={(e) => {
+                            field.onChange(e);
+                            updateFormDataAndSend(index, "url", e.target.value); // Pass index as well
+                          }}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name={`links.${index}.icon`}
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>
+                        Icon{" "}
+                        <span className="text-xs text-muted-foreground">
+                          (e.g. https://simpleicons.org/icons/blogger.svg)
+                        </span>
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="icon"
+                          {...field}
+                          value={field.value as string}
+                          onChange={(e) => {
+                            field.onChange(e);
+                            updateFormDataAndSend(
+                              index,
+                              "icon",
+                              e.target.value
+                            ); // Pass index as well
+                          }}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <Button
+                  type="button"
+                  variant={"outline"}
+                  onClick={() => {
+                    remove(index);
+                    dispatch(removeLink(index));
+                  }}
+                >
+                  <X className="h-6 w-6" />
+                  Remove Link
+                </Button>
+              </React.Fragment>
+            ))}
+          </form>
+        </Form>
+        <Button
+          type="button"
+          className="w-full"
+          variant={"outline"}
+          onClick={() => append({ label: "", url: "", icon: "" })}
+        >
+          <Plus className="h-6 w-6" />
+          Add Link
+        </Button>
+      </div>
+    </section>
+  );
+};
+
+export default CustomeLink;

@@ -74,3 +74,42 @@
       @apply bg-background text-foreground;
     }
   }
+
+
+/* global.css */
+
+@layer base {
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px; /* Add this line to change the height of the scrollbar */
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+}
+
+/* @font-face {
+  font-family: InterBlack;
+  src: url("../public/font/InterBlack.ttf");
+}
+@font-face {
+  font-family: InterBold;
+  src: url("../public/font/InterBold.ttf");
+}
+@font-face {
+  font-family: InterMedium;
+  src: url("../public/font/InterMedium.ttf");
+}
+@font-face {
+  font-family: InterRegular;
+  src: url("../public/font/InterRegular.ttf");
+} */
