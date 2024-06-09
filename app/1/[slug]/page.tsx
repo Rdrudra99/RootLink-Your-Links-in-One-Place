@@ -14,7 +14,6 @@ import {
   Twitter,
   Youtube,
 } from "lucide-react";
-import Image from "next/image";
 export default function Page() {
   const LinkData = [
     {
@@ -92,7 +91,7 @@ export default function Page() {
       <>
         <main className="p-4 h-full w-full space-y-8 pt-12 max-w-lg mx-auto">
           <div className="text-center">
-            <Image
+            <img
               src={
                 profile?.profileImage || "https://source.unsplash.com/random"
               }
@@ -161,7 +160,7 @@ export default function Page() {
                   >
                     <dt className="flex items-center space-x-2 p-1 -m-1 rounded-xl hover:bg-slate-100 bg-slate-50">
                       <div className="flex-shrink-0 flex h-10 w-10 items-center justify-center rounded-lg text-slate-500">
-                        <Image
+                        <img
                           className="w-5 h-4"
                           src={
                             item.icon || "https://source.unsplash.com/random"

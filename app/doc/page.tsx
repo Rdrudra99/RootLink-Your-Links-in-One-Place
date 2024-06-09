@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import { GitGraph } from "lucide-react";
-import Image from "next/image";
 const icons = [
   {
     name: "Blog",
@@ -138,7 +137,7 @@ const page = () => {
               <div key={index} className="flex justify-between border-b py-2">
                 <div className="text-left">{icon.name}</div>
                 <div className="flex items-center space-x-2">
-                  <Image src={icon.url} className="h-4 w-4" alt={icon.name} />
+                  <img src={icon.url} className="h-4 w-4" alt={icon.name} />
                   <span>{icon.url}</span>
                 </div>
               </div>
