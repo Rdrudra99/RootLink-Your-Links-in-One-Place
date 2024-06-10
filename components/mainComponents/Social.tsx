@@ -71,8 +71,8 @@ const Social = () => {
 
   return (
     <section aria-labelledby="social-links-header" className="px-4">
-      <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
-        Social Links
+      <h3 className="scroll-m-20 text-xl font-semibold tracking-tight">
+      Manage Your Social Profiles
     </h3>
     {/* <blockquote className="mt-6 border-l-2 pl-6 italic">
         "Enter your social links"

@@ -35,7 +35,7 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             {/* <SiteHeader /> */}
-            <div className="container">
+            <div >
               {children}
             </div>
             <Toaster />

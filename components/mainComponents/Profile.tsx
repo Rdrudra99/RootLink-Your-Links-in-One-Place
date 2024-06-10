@@ -58,9 +58,10 @@ const Profile = () => {
 
   return (
     <section aria-labelledby="profile-header" className="px-4">
-      <h3 className="scroll-m-20 text-2xl font-semibold tracking-tight">
-        Profile Information
-      </h3>
+<h3 className="scroll-m-20 text-xl font-semibold tracking-tight">
+    Your Profile Details
+</h3>
+
       {/* <blockquote className="mt-6 border-l-2 pl-6 italic">
         "Enter your profile information"
       </blockquote> */}
