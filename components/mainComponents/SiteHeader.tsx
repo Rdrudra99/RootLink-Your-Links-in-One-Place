@@ -47,26 +47,8 @@ export default function SiteHeader() {
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
           <nav className="flex items-center space-x-4">
             <DemoData />
-            {/* <Button
-              className="flex justify-center items-center space-x-4"
-              variant={"outline"}
-            >
-              <ClipboardCopy
-                className="w-4 h-4"
-                onClick={() => {
-                  navigator.clipboard.writeText(
-                    `https://localhost:3000/1${encryptedData}`
-                  );
-                  toast({
-                    title: "Link Copied",
-                    description: "The link has been copied to your clipboard.",
-                  });
-                }}
-              />
-              copy url
-            </Button> */}
           </nav>
-          <nav className="flex items-center space-x-4">
+          {/* <nav className="flex items-center space-x-4">
             <Link
               href={`/1/${encodeURIComponent(String(encryptedData))}`}
               target="_blank"
@@ -80,7 +62,7 @@ export default function SiteHeader() {
                 <span>Share</span>
               </Button>
             </Link>
-          </nav>
+          </nav> */}
         </div>
       </div>
     </header>

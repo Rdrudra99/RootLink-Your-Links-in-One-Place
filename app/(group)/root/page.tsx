@@ -1,13 +1,8 @@
-import { AvatarImage, Avatar } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 
-import Profile from "@/components/mainComponents/Profile";
-import Social from "@/components/mainComponents/Social";
 import CustomeLink from "@/components/mainComponents/CustomeLink";
 import Preview from "@/components/mainComponents/Preview";
-import { ModeToggle } from "@/components/Toggle";
-import { SiteHeader } from "@/components/mainComponents/SiteHeader";
+import Profile from "@/components/mainComponents/Profile";
+import Social from "@/components/mainComponents/Social";
 import {
   ResizableHandle,
   ResizablePanel,

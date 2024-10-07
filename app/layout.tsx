@@ -4,7 +4,6 @@ import "./globals.css";
 import StoreProvider from "@/components/StoreProvider";
 import { Roboto } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
-import { SiteHeader } from "@/components/mainComponents/SiteHeader";
 import { Toaster } from "@/components/ui/toaster";
 
 const roboto = Roboto({
