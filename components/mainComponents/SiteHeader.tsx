@@ -48,7 +48,7 @@ export default function SiteHeader() {
           <nav className="flex items-center space-x-4">
             <DemoData />
           </nav>
-          {/* <nav className="flex items-center space-x-4">
+          <nav className="flex items-center space-x-4">
             <Link
               href={`/1/${encodeURIComponent(String(encryptedData))}`}
               target="_blank"
@@ -62,7 +62,7 @@ export default function SiteHeader() {
                 <span>Share</span>
               </Button>
             </Link>
-          </nav> */}
+          </nav>
         </div>
       </div>
     </header>
