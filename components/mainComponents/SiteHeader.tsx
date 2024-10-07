@@ -21,7 +21,7 @@ import { RootState } from "@/lib/store/store";
 import CryptoJS from "crypto-js";
 import DemoData from "../DemoDataButton";
 
-export function SiteHeader() {
+export default function SiteHeader() {
   const mainData = useSelector((state: RootState) => state.heyRudra.userData);
   // console.log("Rudra", mainData);
 

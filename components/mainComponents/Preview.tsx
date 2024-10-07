@@ -1,19 +1,6 @@
 "use client";
 import { RootState } from "@/lib/store/store";
-import { Trash, Unlink } from "lucide-react";
 import Link from "next/link";
-import React, { useState } from "react";
-import { AiTwotoneMail } from "react-icons/ai";
-// import {
-//   PiFacebookLogoDuotone,
-//   PiTwitterLogoDuotone,
-//   PiGithubLogoDuotone,
-//   PiInstagramLogoDuotone,
-//   PiTelegramLogoLight,
-//   PiLinkedinLogoDuotone,
-//   PiYoutubeLogoDuotone,
-//   PiWhatsappLogoDuotone,
-// } from "react-icons/pi";
 
 import {
   Facebook,
@@ -28,8 +15,6 @@ import {
 } from "lucide-react";
 
 import { useSelector } from "react-redux";
-import { AvatarImage } from "../ui/avatar";
-import Image from "next/image";
 
 const LinkData = [
   {

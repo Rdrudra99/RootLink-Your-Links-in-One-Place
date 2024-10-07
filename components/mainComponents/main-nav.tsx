@@ -1,21 +1,10 @@
 "use client";
 
-import * as React from "react";
+import { RootState } from "@/lib/store/store";
+import { GitGraph } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { CopyIcon, GitGraph, Radio } from "lucide-react";
-import { cn } from "@/lib/utils";
-import DemoData from "../DemoDataButton";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "../ui/tooltip";
-import { Button } from "../ui/button";
-import { toast } from "../ui/use-toast";
 import { useSelector } from "react-redux";
-import { RootState } from "@/lib/store/store";
 
 import CryptoJS from "crypto-js";
 
